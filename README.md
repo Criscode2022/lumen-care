@@ -36,7 +36,28 @@ npm run build
 npm start
 ```
 
-Set `DATABASE_URL` to a Neon (or any Postgres) connection string to persist beyond the process. Leave it unset and Lumen uses an in-memory Postgres compatible store — useful for demos and CI.
+## Deploy
+
+The live board is already running in this preview. For your own production host:
+
+1. Provision a [Neon](https://neon.tech) project and copy the pooled `DATABASE_URL`.
+2. Build and start a single process that serves the Angular app and the Nest API:
+
+```bash
+npm ci
+npm run build
+DATABASE_URL=postgres://... npm start
+```
+
+Or build the image:
+
+```bash
+docker build -t lumen-care .
+docker run -p 8080:8080 -e DATABASE_URL=postgres://... lumen-care
+```
+
+Migrations apply on `npm run build` against Neon, and automatically on boot when using the embedded PGLite preview.
+
 
 ## API
 
