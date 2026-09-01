@@ -4,6 +4,7 @@ dist/
 artifacts/
 screenshots/
 .grok/
+.project_id
 *.log
 .env
 .env.*

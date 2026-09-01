@@ -22,23 +22,26 @@ Fifty-three million unpaid caregivers in the United States currently run this wo
 
 ## Quick start
 
+Requires Node 22.
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-The app listens on port 8080. Open `/` for the product site and `/app` for the care board.
+Open `/` for the product site and `/app` for the care board.
 
 Production build:
 
 ```bash
+npm ci
 npm run build
 npm start
 ```
 
-## Deploy
+CI runs typecheck, the production Angular build, and the Nest API test suite on every push to `main`.
 
-The live board is already running in this preview. For your own production host:
+## Deploy
 
 1. Provision a [Neon](https://neon.tech) project and copy the pooled `DATABASE_URL`.
 2. Build and start a single process that serves the Angular app and the Nest API:
@@ -57,7 +60,6 @@ docker run -p 8080:8080 -e DATABASE_URL=postgres://... lumen-care
 ```
 
 Migrations apply on `npm run build` against Neon, and automatically on boot when using the embedded PGLite preview.
-
 
 ## API
 
